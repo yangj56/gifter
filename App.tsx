@@ -4,6 +4,8 @@ import 'react-native-gesture-handler';
 import { MainTab } from './src/components/Navigation';
 import Welcome from './src/pages/WelcomePage';
 import { getData } from './src/utils/AsyncStorage';
+import { Provider } from 'react-redux';
+import store from './src/store';
 
 const App = () => {
     const [isLoaded, setIsLoaded] = useState(false);
@@ -22,9 +24,11 @@ const App = () => {
     }, []);
 
     return (
-        <NavigationContainer>
-            {isLoaded ? <MainTab /> : <Welcome />}
-        </NavigationContainer>
+        <Provider store={store}>
+            <NavigationContainer>
+                {isLoaded ? <MainTab /> : <Welcome />}
+            </NavigationContainer>
+        </Provider>
     );
 };
 
